@@ -16,9 +16,10 @@ const obtenerReceta = util.promisify(cliente.obtenerReceta.bind(cliente));
 server.get('/', async () => {
 
     const [meta, receta] = await Promise.all(
-        obtenerMetaData({}),
-        obtenerReceta({id: 42})
+        [obtenerMetaData({}),
+        obtenerReceta({id: 42})]
     );
+    console.log(receta.nombre)
     return{
         pid_cliente : process.pid,
         metadata_server: meta, 
